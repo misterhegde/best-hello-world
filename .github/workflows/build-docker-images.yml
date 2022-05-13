@@ -27,10 +27,10 @@ jobs:
     - name: Push the Server Docker image
       run: docker push adityahegde01/hello-world-server
     - name: Kubernetes set context
-        uses: Azure/k8s-set-context@v1
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      uses: Azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
     - name:  Kubernetes apply
       run: |
         kubectl apply -f k8s
