@@ -33,6 +33,9 @@ jobs:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
     - name:  Kubernetes apply
       run: |
+        helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+        helm repo update
+        helm install ingress-nginx ingress-nginx/ingress-nginx
         kubectl apply -f k8s
 
        
