@@ -59,8 +59,8 @@ export default {
       );
     },
 
-    async setVisits(){
-      const visitsSent = await axois.put('/api/visits',{visits:this.visits})
+     setVisits(){
+      axois.put('/api/visits',{visits:this.visits})
 
     },
 
