@@ -1,0 +1,34 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+ 
+
+jobs:
+
+  build-docker-images:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the CLient Docker image
+      run: docker build -t adityahegde01/hello-world-client ./client
+    - name: Build the Server Docker image
+      run: docker build -t adityahegde01/hello-world-server ./server
+
+      
+  push-docker-images:
+    needs: build-docker-images
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v3
+     - name: Push the client image
+       run: docker push adityahegde01/hello-world-client
+     - name: Push the server image
+       run: docker push adityahegde01/hello-world-server
+       
+      
+      
+    
