@@ -5,7 +5,6 @@
         <div class="context">
           <h1>Welcome to the most over engineered <em>Hello World!</em></h1>
           <p>scroll down for a surprise</p>
-
         </div>
 
         <div class="area">
@@ -38,6 +37,7 @@
 
 <script>
 import anime from "animejs/lib/anime.es.js";
+import axois from 'axios'
 export default {
   name: "Landing",
   data() {
@@ -59,12 +59,13 @@ export default {
       );
     },
 
-    
-  },
+    setVisits(){
+      const visitsSent = await axois.put('/api/visits',{visits:this.visits})
 
-  mounted() {
-   
-    const myfaceContainer = document.querySelector(".myFace__container");
+    },
+
+    scrollEvent(){
+       const myfaceContainer = document.querySelector(".myFace__container");
     const myFace = document.querySelector(".myFace");
 
     document.addEventListener("scroll", () => {
@@ -88,6 +89,16 @@ export default {
         });
       }
     });
+    }
+
+
+  },
+
+  mounted() {
+    this.setVisits();
+    this.scrollEvent();
+
+
   },
 };
 </script>
