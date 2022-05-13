@@ -13,14 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the CLient Docker image
-      run: |
-       docker build -t adityahegde01/hello-world-client ./client
-       docker push adityahegde01/hello-world-client
+    - name: Build the Client Docker image
+      run: docker build -t adityahegde01/hello-world-client ./client
+    - name: Push the Client Docker image
+      run: docker push adityahegde01/hello-world-client
     - name: Build the Server Docker image
-      run: |
-      docker build -t adityahegde01/hello-world-server ./server
-      docker push adityahegde01/hello-world-server
+      run: docker build -t adityahegde01/hello-world-server ./server
+    - name: Push the Server Docker image
+      run: docker push adityahegde01/hello-world-server
 
        
       
