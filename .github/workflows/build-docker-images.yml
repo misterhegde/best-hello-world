@@ -33,7 +33,7 @@ jobs:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
     - name:  Set pg password apply
       run: |
-        kubectl create secret generic pgpassword3 --from-literal PGPASSWORD=mypassword
+        kubectl create secret generic pgpassword4 --from-literal PGPASSWORD=mypassword
     - name:  Kubernetes apply
       run: |
         helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
