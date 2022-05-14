@@ -37,7 +37,7 @@
 
 <script>
 import anime from "animejs/lib/anime.es.js";
-import axois from 'axios'
+import axois from "axios";
 export default {
   name: "Landing",
   data() {
@@ -59,46 +59,43 @@ export default {
       );
     },
 
-     setVisits(){
-      axois.put('/api/visits',{visits:this.visits})
-
+    setVisits() {
+      axois.put("/api/visits", { visits: this.visits });
     },
 
-    scrollEvent(){
-       const myfaceContainer = document.querySelector(".myFace__container");
-    const myFace = document.querySelector(".myFace");
+    scrollEvent() {
+      let myfaceContainer = document.querySelector(".myFace__container");
+      let myFace = document.querySelector(".myFace");
 
-    document.addEventListener("scroll", () => {
-      if (this.isInViewport(myfaceContainer)) {
-        console.log("inview");
-        anime({
-          targets: myFace,
-          translateY: -250,
-          translateX: -250,
-          duration: 3000,
-          opacity: 1,
-        });
-      } else {
-        anime({
-          targets: myFace,
-          translateY: 0,
-          translateX: 0,
-          opacity: 0,
-
-          //   duration: 4000,
-        });
-      }
-    });
-    }
-
-
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            anime({
+              targets: myFace,
+              translateY: '-50vh',
+              translateX: '-35vw',
+              opacity: 1,
+            });
+          } else {
+            anime({
+              targets: myFace,
+              translateY: 0,
+              translateX: 0,
+              opacity: 0,
+            });
+          }
+        },
+        {
+          threshold: [0.99],
+        }
+      );
+      observer.observe(myfaceContainer);
+    },
   },
 
   mounted() {
     this.setVisits();
     this.scrollEvent();
-
-
   },
 };
 </script>
