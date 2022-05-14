@@ -31,7 +31,7 @@ jobs:
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
-   - name:  Set pg password apply
+    - name:  Set pg password apply
       run: |
         kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypassword
     - name:  Kubernetes apply
