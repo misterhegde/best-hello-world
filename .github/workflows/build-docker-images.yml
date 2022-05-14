@@ -33,11 +33,10 @@ jobs:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
     - name:  Set pg password apply
       run: |
-        kubectl create secret generic pgpassword2 --from-literal PGPASSWORD=mypassword
+        kubectl create secret generic pgpassword3 --from-literal PGPASSWORD=mypassword
     - name:  Kubernetes apply
       run: |
-        kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
-        kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+        helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
         kubectl delete -f k8s
         kubectl apply -f k8s
 
