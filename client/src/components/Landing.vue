@@ -143,7 +143,6 @@ body {
 .context {
   width: 100%;
   position: absolute;
-  top: 50vh;
 }
 
 .context h1 {
